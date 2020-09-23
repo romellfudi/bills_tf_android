@@ -1,0 +1,4 @@
+billetes 10
+billetes 100
+billetes 20
+billetes 50
