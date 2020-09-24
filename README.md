@@ -104,3 +104,30 @@ tflite_convert \
   --inference_type=FLOAT \
   --input_data_type=FLOAT
 ```
+
+# Download Release Assets
+```sh
+gh release download latest -p "*.a*"
+gh release download latest -p "retrained_*"
+gh release download latest -p "inception_*"
+gh release download latest -p "*.zip"
+```
+
+# ABB to APK
+```sh
+##################################################
+# sudo brew install bundletool
+# https://github.com/google/bundletool/releases
+# alias bundletool='java -jar bundletool-all.jar'
+##################################################
+# build apks
+mkdir apks/
+bundletool build-apks --mode=universal --bundle=bills_tf_android/tflite-kt/app/build/outputs/bundle/debug/app-debug.aab --output=apks/app-universal-debug.apks
+bundletool build-apks --mode=universal --bundle=app-debug.aab --output=apks/app-universal-debug.apks
+# change name
+mv apks/app-universal-debug.apks apks/app-universal-debug.zip
+# unzip
+unzip apks/app-universal-debug.zip
+# change name
+mv universal.apk app-debug.apk
+```
