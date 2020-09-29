@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>deeplizard greeting app</title>
+    <style>
+        * {
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+    <input id="image-selector" type="file">    
+    <button id="predict-button">Predict</button>
+    <p style="font-weight:bold">Predictions</p>    
+    <p>10: <span id="10-prediction"></span></p>
+    <p>20: <span id="20-prediction"></span></p>
+    <p>50: <span id="50-prediction"></span></p>
+    <p>100: <span id="100-prediction"></span></p>
+    <img id="selected-image" src=""/>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        let base64Image;
+        $("#image-selector").change(function() {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let dataURL = reader.result;
+                $('#selected-image').attr("src", dataURL);
+                base64Image = dataURL.replace("data:image/png;base64,","");
+                // console.log(base64Image);
+            }
+            reader.readAsDataURL($("#image-selector")[0].files[0]);
+            $("#10-prediction").text("");
+            $("#20-prediction").text("");
+            $("#50-prediction").text("");
+            $("#100-prediction").text("");
+        });
+    
+        $("#predict-button").click(function(){
+            let message = {
+                image: base64Image
+            }
+            console.log(message);
+            $.post("http://0.0.0.0:5000/predict", JSON.stringify(message), function(response){
+                $("#10-prediction").text(response.prediction.B10.toFixed(6));
+                $("#20-prediction").text(response.prediction.B20.toFixed(6));
+                $("#50-prediction").text(response.prediction.B50.toFixed(6));
+                $("#100-prediction").text(response.prediction.B100.toFixed(6));
+                console.log(response);
+            });
+        });       
+    </script>
+    </body>
+</html>  
