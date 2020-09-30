@@ -67,14 +67,14 @@ train_path = 'bills_photos/train'
 valid_path = 'bills_photos/valid'
 test_path = 'bills_photos/test'
 
-train_batches = ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
+train_batches = ImageDataGenerator(rotation_range=90) \
     .flow_from_directory(directory=train_path, target_size=(224,224), classes=['10', '20', '50', '100'], batch_size=10)
-valid_batches = ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
+valid_batches = ImageDataGenerator(rotation_range=90) \
     .flow_from_directory(directory=valid_path, target_size=(224,224), classes=['10', '20', '50', '100'], batch_size=10)
-test_batches = ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
+test_batches = ImageDataGenerator(rotation_range=90) \
     .flow_from_directory(directory=test_path, target_size=(224,224), classes=['10', '20', '50', '100'], batch_size=10, shuffle=False)
 
-imgs, labels = next(train_batches)
+# imgs, labels = next(train_batches)
 
 model = Sequential([
     Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding = 'same', input_shape=(224,224,3)),
@@ -90,7 +90,7 @@ model.fit(x=train_batches,
     steps_per_epoch=len(train_batches),
     validation_data=valid_batches,
     validation_steps=len(valid_batches),
-    epochs=15,
+    epochs=10,
     verbose=2
 )
 print(test_batches.class_indices)
