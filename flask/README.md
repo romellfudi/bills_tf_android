@@ -2,6 +2,7 @@
 export FLASK_APP=predict_app.py
 flask run --host=0.0.0.0
 # check http://0.0.0.0:5000/static/bills_detect.html
+# check http://0.0.0.0:81/predict-with-visuals.html
 ```
 
 ##  Powersh3ll
@@ -23,7 +24,7 @@ npm install -g nodemon
 
 ```sh
 python test.py
-tensorflowjs_converter --input_format keras keras_model.h5 static/models/
+tensorflowjs_converter --input_format keras image_generation_model.h5 static/models/
 cd local-server/;nodemon server.js
 # ./static/models/
 #     group1-shard1of1
@@ -33,8 +34,9 @@ cd local-server/;nodemon server.js
 ```
 
 ```python
-import keras
+from tensorflow import keras
 import tensorflowjs as tfjs
 vgg16 = keras.applications.vgg16.VGG16()
-tfjs.converters.save_keras_model(vgg16,'VGG16/')
+tfjs.converters.save_keras_model(vgg16,'static/models')
+# change "Functional" to "Model" in model.js file
 ```

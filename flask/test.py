@@ -95,7 +95,7 @@ model.fit(x=train_batches,
 )
 print(test_batches.class_indices)
 
-model.save('keras_model.h5')
+model.save('image_generation_model.h5')
 
 
 import tensorflow.keras as keras
@@ -105,5 +105,5 @@ print(tensorflow.__version__)
 print(keras.__version__)
 # model = load_model('image_generation_model.h5')
 # print(" * Model loaded!")
-model = load_model('keras_model.h5')
+model = load_model('image_generation_model.h5')
 print(" * Model loaded!")
