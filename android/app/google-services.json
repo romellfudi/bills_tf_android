@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "879856650892",
+    "firebase_url": "https://fudiactions.firebaseio.com",
+    "project_id": "fudiactions",
+    "storage_bucket": "fudiactions.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879856650892:android:5b8fbc9f6713b55afec9a9",
+        "android_client_info": {
+          "package_name": "com.romellfudi.bills"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879856650892-e56fis8bmea4pj5mf8taalerdrco37tc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtOHLki4tl4GztdyTsXdq8sMsp88zSK7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879856650892-e56fis8bmea4pj5mf8taalerdrco37tc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
